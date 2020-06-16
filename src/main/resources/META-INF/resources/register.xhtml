@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>ITshop Regisztráció</title>
+    <link type="text/css" rel="stylesheet" href="css/register.css" />
+    <link type="text/css" rel="stylesheet" href="css/primeflex.css" />
+</h:head>
+<h:body>
+    <div id="header">
+        <ui:insert name="header">
+            <ui:include src="/WEB-INF/templates/header.xhtml"/>
+        </ui:insert>
+    </div>
+    <div class="register-container">
+        <h:form>
+            <p:panelGrid  id ="panelgrid1" columns="3" styleClass="ui-noborder" style="margin: 5% auto"  >
+                <h:outputText value="Vezetéknév" ></h:outputText>
+                <p:inputText title="Az ön vezetékneve" id="lastn" value="#{RegisterForm.lastname}" />
+                <p:tooltip id="focusLastn" for="lastn" showEvent="focus" hideEvent="blur" />
+
+                <h:outputText value="Keresztnév"></h:outputText>
+                <p:inputText title="Az ön keresztneve" id="firstn" value="#{RegisterForm.firstname}" />
+                <p:tooltip id="focusFirstn" for="firstn" showEvent="focus" hideEvent="blur" />
+
+                <h:outputText value="Felhasználónév" ></h:outputText>
+                <p:inputText title="Az ön felhasználóneve" id="usern" value="#{RegisterForm.username}" />
+                <p:tooltip id="focusUsern" for="usern" showEvent="focus" hideEvent="blur" />
+
+                <h:outputText value="Email cím" ></h:outputText>
+                <p:inputText title="Az ön email címe" id="email" value="#{RegisterForm.email}" />
+                <p:tooltip id="focusEmail" for="email" showEvent="focus" hideEvent="blur" />
+
+                <h:outputText value="Jelszó"></h:outputText>
+                <p:password title="Legalább 8 karakter hosszú" id="pass1" value="#{RegisterForm.password1}" />
+                <p:tooltip id="focusPassword1" for="pass1" showEvent="focus" hideEvent="blur" />
+
+
+                <h:outputText value="Jelszó újra"></h:outputText>
+                <p:password title="Az ön jelszava másodjára" id="pass2" value="#{RegisterForm.password2}" />
+                <p:tooltip id="focusPassword2" for="pass2" showEvent="focus" hideEvent="blur" />
+
+            </p:panelGrid>
+
+            <div id="save_button" style="text-align: center;">
+                <p:commandButton value="Mentés" id="Register_save"
+                                 action="#{RegisterForm.registrationSave}" style="margin-right:20px;" ajax="false" />
+            </div>
+        </h:form>
+    </div>
+</h:body>
+</html>

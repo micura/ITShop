@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <ui:repeat var="item" value="#{Product.getProductData(param['id'])}">
+        <title>#{item.getProduct_name()}</title>
+    </ui:repeat>
+    <link type="text/css" rel="stylesheet" href="css/primeflex.css" />
+    <link type="text/css" rel="stylesheet" href="css/product.css" />
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+</h:head>
+<body>
+    <div id="header">
+        <ui:insert name="header">
+            <ui:include src="/WEB-INF/templates/header.xhtml"/>
+        </ui:insert>
+    </div>
+
+    <div class="container">
+            <!-- Left Column / Headphones Image -->
+            <div class="left-column">
+                <img src="images/#{Product.getCategoryName(param['id'])}.jpg" alt=""/>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right-column">
+                <ui:repeat var="item" value="#{Product.getProductData(param['id'])}">
+                <!-- Product Description -->
+                <div class="product-description">
+                    <span>#{Product.getCategoryName(param['id'])}</span>
+                    <h1>#{item.getProduct_name()}</h1>
+                    <p>#{item.getProduct_description()}</p>
+                </div>
+
+                <!-- Product Status -->
+                <div class="product-status">
+                    <p>#{item.getProduct_status()}</p>
+                </div>
+
+                <!-- Product Pricing -->
+                <div class="product-price">
+                    <span>#{item.getPrice()} Ft</span>
+                </div>
+                </ui:repeat>
+
+
+                <h:form>
+                    <p:commandButton class="cart-btn" value="Kosárba"  action="#{Product.addToCart()}" >
+                        <f:param name="id" value="#{param['id']}"> </f:param>
+                    </p:commandButton>
+                </h:form>
+            </div>
+    </div>
+
+    <div id="footer">
+        <ui:insert name="footer">
+            <ui:include src="/WEB-INF/templates/footer.xhtml"/>
+        </ui:insert>
+    </div>
+</body>
+</html>

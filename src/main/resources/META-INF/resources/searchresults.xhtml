@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jstl/core">
+<h:head>
+    <title>Keresés eredményei</title>
+    <link type="text/css" rel="stylesheet" href="css/searchresults.css" />
+    <link type="text/css" rel="stylesheet" href="css/primeflex.css" />
+</h:head>
+<h:body id="search-body">
+    <div id="header">
+        <ui:insert name="ui-header">
+            <ui:include src="/WEB-INF/templates/header.xhtml"/>
+        </ui:insert>
+    </div>
+    <div id="content">
+        <ui:insert name="ui-content">
+            <h:form id="search-form">
+                <p:panel header="Talált Termékek:">
+                    <div>
+                        <p:inputText id="search-input" placeholder="Keresés..." value="${searchBean.searchInput}"/>
+                        <p:commandButton  id="search-button" action="searchresults.xhtml" value="Keresés" update="table" />
+                    </div>
+
+                    <p:dataTable styleClass="search-table" headerClass="search-table-header" id="table" var="p" value="${searchBean.search_data(searchBean.searchInput)}">
+                        <p:column>
+                            <f:facet name="header">Azonosító</f:facet>
+                            <p:outputLabel value="${p.getProduct_id()}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Név</f:facet>
+                            <p:commandLink action="${searchBean.createURL(p.getProduct_id())}"
+                                           value="${p.getProduct_name()}"></p:commandLink>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Leírás</f:facet>
+                            <p:outputLabel value="${p.getProduct_description()}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Státusz</f:facet>
+                            <p:outputLabel value="${p.getProduct_status()}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Ár</f:facet>
+                            <p:outputLabel value="${p.getPrice()}"/>
+                        </p:column>
+                        <p:column>
+                            <h:graphicImage width="150" value = "/images/${p.getImage()}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Kategória</f:facet>
+                            <p:outputLabel value="${p.getCategory_name()}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </p:panel>
+
+
+            </h:form>
+        </ui:insert>
+    </div>
+</h:body>
+</html>

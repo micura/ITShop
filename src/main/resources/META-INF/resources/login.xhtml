@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Login Page</title>
+    <link type="text/css" rel="stylesheet" href="css/primeflex.css" />
+</h:head>
+<h:body>
+    <div id="header">
+        <ui:insert name="header">
+            <ui:include src="/WEB-INF/templates/header.xhtml"/>
+        </ui:insert>
+    </div>
+    <div id="content">
+        <h:form>
+            <h3>JSF Login Logout</h3>
+            <h:outputText value="Username" />
+            <h:inputText id="username" value="#{login.user}"></h:inputText>
+            <h:message for="username"></h:message>
+            <br></br><br></br>
+
+            <h:outputText value="Password" />
+            <h:inputSecret id="password" value="#{login.pwd}"></h:inputSecret>
+            <h:message for="password"></h:message>
+            <br></br><br></br>
+
+            <h:commandButton action="#{login.validateUsernamePassword}"
+                             value="Login"></h:commandButton>
+        </h:form>
+    </div>
+</h:body>
+</html>

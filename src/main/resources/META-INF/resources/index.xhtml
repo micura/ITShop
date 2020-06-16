@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jstl/core" >
+<h:head>
+  <title>IT Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+  <link type="text/css" rel="stylesheet" href="css/primeflex.css" />
+  <link type="text/css" rel="stylesheet" href="css/style.css" />
+
+  <link type="text/css" rel="stylesheet" href="css/swiper.min.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css"/>
+  <link type="text/css" rel="stylesheet" href="css/searchresults.css" />
+  <h:outputScript library="js" name="swiper.js" />
+  <h:outputScript library="js" name="swiper.min.js" />
+</h:head>
+<h:body>
+  <div id="header">
+    <ui:insert name="header">
+      <ui:include src="/WEB-INF/templates/header.xhtml"/>
+    </ui:insert>
+  </div>
+  <div id="container">
+    <p:layout style="min-height:400px;">
+      <div id="list">
+      <p:layoutUnit position="west" size="250"  >
+
+          <ul class="list">
+            <h:form>
+              <c:forEach var="item" items="#{Category.getCategoriesName()}">
+                <li>
+                  <a href="category.xhtml?id=#{Category.getCategoriesIdByName(item)}"> #{item} (#{Static.getNumberOfCategory(item)})</a>
+
+                </li>
+              </c:forEach>
+            </h:form>
+          </ul>
+
+      </p:layoutUnit>
+      </div>
+
+      <p:layoutUnit position="center">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image:url(images/slider/1.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(images/slider/2.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(images/slider/3.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(images/slider/4.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(images/slider/5.jpg)"></div>
+            <div class="swiper-slide" style="background-image:url(images/slider/6.jpg)"></div>
+          </div>
+
+          <div class="swiper-pagination"></div>
+        </div>
+      </p:layoutUnit>
+    </p:layout>
+
+  </div>
+
+  <script type="text/javascript" src="js/slider.js"></script>
+
+
+  <div id="footer">
+    <ui:insert name="footer">
+      <ui:include src="/WEB-INF/templates/footer.xhtml"/>
+    </ui:insert>
+  </div>
+</h:body>
+</html>
+
